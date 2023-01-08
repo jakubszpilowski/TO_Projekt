@@ -15,13 +15,6 @@ public class Ticket {
         this.price = price;
     }
 
-    public Ticket(Train train, User user, int ticketId, double price) {
-        this.train = train;
-        this.user = user;
-        this.ticketId = ticketId;
-        this.price = price;
-    }
-
     public Train getTrain() {
         return train;
     }
