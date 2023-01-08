@@ -3,31 +3,17 @@ package com.projekt.entity;
 import java.time.LocalTime;
 import java.util.Date;
 
-public class Train {
-    private int trainId;
-    private int trainNumber;
-    private String trainType;
-    private String from;
-    private String to;
-    private LocalTime departureTime;
-    private LocalTime arrivalTime;
-    private int platform;
-    private Date date;
-    private int numberOfSeats;
-
-    public Train(int trainId, int trainNumber, String trainType, String from, String to, LocalTime departureTime,
-                 LocalTime arrivalTime, int platform, Date date, int numberOfSeats) {
-        this.trainId = trainId;
-        this.trainNumber = trainNumber;
-        this.trainType = trainType;
-        this.from = from;
-        this.to = to;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.platform = platform;
-        this.date = date;
-        this.numberOfSeats = numberOfSeats;
-    }
+public abstract class Train {
+    protected int trainId;
+    protected int trainNumber;
+    protected String trainType;
+    protected String from;
+    protected String to;
+    protected LocalTime departureTime;
+    protected LocalTime arrivalTime;
+    protected int platform;
+    protected Date date;
+    protected int numberOfSeats;
 
     public int getTrainId() {
         return trainId;
@@ -47,10 +33,6 @@ public class Train {
 
     public String getTrainType() {
         return trainType;
-    }
-
-    public void setTrainType(String trainType) {
-        this.trainType = trainType;
     }
 
     public String getFrom() {
@@ -103,9 +85,5 @@ public class Train {
 
     public int getNumberOfSeats() {
         return numberOfSeats;
-    }
-
-    public void setNumberOfSeats(int numberOfSeats) {
-        this.numberOfSeats = numberOfSeats;
     }
 }
