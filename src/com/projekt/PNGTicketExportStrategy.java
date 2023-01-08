@@ -39,7 +39,7 @@ public class PNGTicketExportStrategy implements TicketExportStrategy{
 
 
         // Save the image to a file
-        File outputFile = new File(filename);
+        File outputFile = new File(filename + ".png");
         try {
             ImageIO.write(image, "png", outputFile);
         } catch (IOException e) {

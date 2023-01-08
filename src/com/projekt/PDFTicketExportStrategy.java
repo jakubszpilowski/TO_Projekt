@@ -15,7 +15,7 @@ public class PDFTicketExportStrategy implements TicketExportStrategy {
             // create a new PDF document
             Document document = new Document();
             // create a file for saving the document
-            PdfWriter.getInstance(document, new FileOutputStream(filename));
+            PdfWriter.getInstance(document, new FileOutputStream(filename + ".pdf"));
             // open the document for editing
             document.open();
 
