@@ -87,11 +87,9 @@ public abstract class Train {
         return numberOfSeats;
     }
 
-    public void printTrain(){
-        System.out.println(
-                trainId + " " + trainNumber + " " + trainType + " "
+    public String printTrain(){
+        return trainNumber + " " + trainType + " "
                         + from + " " + to + " " + departureTime + " " +
-                        arrivalTime + " " + platform + " " + date + " " + numberOfSeats
-        );
+                        arrivalTime + " " + platform + " " + date + " " + numberOfSeats;
     }
 }

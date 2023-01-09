@@ -3,22 +3,26 @@ package com.projekt.commands.trains;
 import com.projekt.commands.Command;
 import com.projekt.entity.Train;
 
-import java.util.List;
+import java.util.TreeMap;
+
 
 public class DeleteTrain implements Command {
-    private List<Train> trainList;
+    private Train backup;
+    private final int id;
+    private final TreeMap<Integer, Train> trainCollection;
 
-    public DeleteTrain(List<Train> trainList) {
-        this.trainList = trainList;
+    public DeleteTrain(int id, TreeMap<Integer, Train> trainCollection) {
+        this.id = id;
+        this.trainCollection = trainCollection;
     }
 
     @Override
     public void execute() {
-
+        backup = trainCollection.remove(id);
     }
 
     @Override
     public void undo() {
-
+        trainCollection.put(id, backup);
     }
 }

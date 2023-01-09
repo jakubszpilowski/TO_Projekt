@@ -1,18 +1,18 @@
 package com.projekt;
 
+import com.projekt.manager.Manager;
 import com.projekt.manager.TicketManager;
 import com.projekt.manager.TrainManager;
 
 public class ManagerFasade {
-    public void chooseManager(String manager){
+    public Manager chooseManager(String manager){
         if(manager.equalsIgnoreCase("tr")){
-            TrainManager trainManager = new TrainManager();
-            trainManager.execute();
+            return new TrainManager();
         } else if (manager.equalsIgnoreCase("ti")) {
-            TicketManager ticketManager = new TicketManager();
-            ticketManager.execute();
+            return new TicketManager();
         } else {
             System.out.println("Wrong option provided!");
+            return null;
         }
     }
 }

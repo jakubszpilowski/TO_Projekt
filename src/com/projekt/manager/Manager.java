@@ -2,6 +2,7 @@ package com.projekt.manager;
 
 import com.projekt.commands.Command;
 
+import java.util.Collection;
 import java.util.Stack;
 
 public abstract class Manager {
@@ -28,4 +29,6 @@ public abstract class Manager {
             undoCommands.push(command);
         }
     }
+
+    public abstract void print();
 }
