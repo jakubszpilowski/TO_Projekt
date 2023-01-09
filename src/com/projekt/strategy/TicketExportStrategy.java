@@ -1,4 +1,4 @@
-package com.projekt;
+package com.projekt.strategy;
 
 import com.projekt.entity.Ticket;
 

@@ -1,6 +1,7 @@
 package com.projekt;
 
 import com.projekt.entity.Ticket;
+import com.projekt.strategy.TicketExportStrategy;
 
 // Class responsible for exporting tickets using a specific strategy
 public class TicketExporter {

@@ -1,6 +1,8 @@
-package com.projekt;
+package com.projekt.strategy;
 
 import com.projekt.entity.Ticket;
+import com.projekt.strategy.TicketExportStrategy;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -10,7 +12,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 // Concrete strategy for exporting tickets in PNG format
-public class PNGTicketExportStrategy implements TicketExportStrategy{
+public class PNGTicketExportStrategy implements TicketExportStrategy {
     // Function for exporting a Ticket object to a PNG file
     public void export(Ticket ticket, String filename) {
         // Set the size of the image
