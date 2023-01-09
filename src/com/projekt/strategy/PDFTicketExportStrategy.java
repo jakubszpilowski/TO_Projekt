@@ -1,10 +1,11 @@
-package com.projekt;
+package com.projekt.strategy;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
+
 import com.projekt.entity.Ticket;
 
 // Concrete strategy for exporting tickets in PDF format

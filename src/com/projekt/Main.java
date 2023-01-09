@@ -21,6 +21,9 @@ public class Main {
             System.out.println("Error while connecting to the database: " + e.getMessage());
         }
 
+        Launcher launcher = new Launcher();
+        launcher.run();
+
         // Stworzenie pociągu pasażerskiego za pomocą metody wytwórczej
 //        TrainFactory factory = new PassengerTrainFactory();
 //        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
