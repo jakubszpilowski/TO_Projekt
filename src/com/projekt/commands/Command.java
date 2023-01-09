@@ -1,6 +1,7 @@
-package com.projekt;
+package com.projekt.commands;
 
 // The base command interface
 public interface Command {
     void execute();
+    void undo();
 }
