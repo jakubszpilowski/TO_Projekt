@@ -1,34 +1,23 @@
 package com.projekt.manager;
+import com.projekt.entity.Train;
 
-import com.projekt.commands.Command;
+import java.util.TreeMap;
 
-import java.util.Collection;
-import java.util.Stack;
+public abstract class Manager<T> {
+    private TreeMap<Integer, T> collection = new TreeMap<Integer, T>();
 
-public abstract class Manager {
-    private static final Stack<Command> undoCommands = new Stack<Command>();;
-    private static final Stack<Command> redoCommands = new Stack<Command>();
-
-    public void executeCommand(Command command) {
-        command.execute();
-        undoCommands.push(command);
+    public TreeMap<Integer, T> getCollection() {
+        return collection;
     }
 
-    public void undo() {
-        if (!undoCommands.isEmpty()) {
-            Command command = undoCommands.pop();
-            redoCommands.push(command);
-            command.undo();
-        }
+    public void setCollection(TreeMap<Integer, T> collection) {
+        this.collection = collection;
     }
 
-    public void redo() {
-        if (!redoCommands.isEmpty()) {
-            Command command = redoCommands.pop();
-            command.execute();
-            undoCommands.push(command);
-        }
-    }
-
+    //CRUD
+    public abstract void add(int id, T object);
     public abstract void print();
+    public abstract void update(int id, T object);
+    public abstract void delete(int id);
+
 }
