@@ -87,9 +87,19 @@ public abstract class Train {
         return numberOfSeats;
     }
 
-    public String printTrain(){
-        return trainNumber + " " + trainType + " "
-                        + from + " " + to + " " + departureTime + " " +
-                        arrivalTime + " " + platform + " " + date + " " + numberOfSeats;
+    @Override
+    public String toString() {
+        return "Train{" +
+                "trainId=" + trainId +
+                ", trainNumber=" + trainNumber +
+                ", trainType='" + trainType + '\'' +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", departureTime=" + departureTime +
+                ", arrivalTime=" + arrivalTime +
+                ", platform=" + platform +
+                ", date=" + date +
+                ", numberOfSeats=" + numberOfSeats +
+                '}';
     }
 }
