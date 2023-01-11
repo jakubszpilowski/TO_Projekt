@@ -31,4 +31,8 @@ public class SystemInvoker {
             UndoCommands.push(command);
         }
     }
+
+    public void print(Command command) {
+        command.execute();
+    }
 }

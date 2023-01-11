@@ -87,7 +87,16 @@ public class menuTrain {
 
     }
 
-    private void edit(){};
+    private void showEditMenu() {
+        System.out.println("Choose field which you want to edit: ");
+        System.out.println("[D] Date");
+        System.out.println("[DT] Departure time");
+        System.out.println("[AT] Arrival time");
+        System.out.println("[P] Platform");
+        System.out.println("Finish editing");
+    }
+
+    private void edit() {};
     private void delete(){
         System.out.println("Insert ID: ");
         int id = input.nextInt();
@@ -101,7 +110,7 @@ public class menuTrain {
     }
 
     private void print() {
-        this.system.executeCommand(new PrintTrains(this.trainManager));
+        this.system.print(new PrintTrains(this.trainManager));
         System.out.println("END... PRESS ENTER!");
     }
     private void undo(){

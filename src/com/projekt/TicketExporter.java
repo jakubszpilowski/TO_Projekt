@@ -5,12 +5,20 @@ import com.projekt.strategy.TicketExportStrategy;
 
 // Class responsible for exporting tickets using a specific strategy
 public class TicketExporter {
+    private static TicketExporter instance;
     // The current export strategy being used
     private TicketExportStrategy exportStrategy;
 
     // Constructor that initializes the exporter with a specific export strategy
-    public TicketExporter(TicketExportStrategy exportStrategy) {
+    private TicketExporter(TicketExportStrategy exportStrategy) {
         this.exportStrategy = exportStrategy;
+    }
+
+    public static TicketExporter getInstance(TicketExportStrategy exportStrategy) {
+        if (instance == null) {
+            instance = new TicketExporter(exportStrategy);
+        }
+        return instance;
     }
 
     // Method for changing the export strategy
