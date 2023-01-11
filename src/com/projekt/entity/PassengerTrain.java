@@ -12,7 +12,7 @@ public class PassengerTrain extends Train {
                           LocalTime arrivalTime,
                           int platform,
                           Date date) {
-        trainType = "osobowy";
+        trainType = "pasażerski";
         numberOfSeats = 100;
         this.trainId = trainId;
         this.trainNumber = trainNumber;
