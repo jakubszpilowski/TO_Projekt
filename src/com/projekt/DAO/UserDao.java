@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.TreeMap;
 
 public class UserDao implements Dao<User> {
     private final Connection connection;
@@ -45,12 +46,12 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public void save(User user) {
+    public void add(User user) {
 
     }
 
     @Override
-    public void update(User user, String[] params) {
+    public void update(User user, TreeMap<String, Object> params) {
 
     }
 

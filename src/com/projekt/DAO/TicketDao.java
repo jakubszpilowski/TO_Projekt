@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeMap;
 
 public class TicketDao implements Dao<Ticket> {
     private final Connection connection;
@@ -66,12 +67,12 @@ public class TicketDao implements Dao<Ticket> {
     }
 
     @Override
-    public void save(Ticket ticket) {
+    public void add(Ticket ticket) {
 
     }
 
     @Override
-    public void update(Ticket ticket, String[] params) {
+    public void update(Ticket ticket, TreeMap<String, Object> params) {
 
     }
 
