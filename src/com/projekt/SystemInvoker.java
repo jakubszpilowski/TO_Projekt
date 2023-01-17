@@ -15,7 +15,6 @@ public class SystemInvoker {
         UndoCommands.push(command);
     }
 
-    // todo: znalezc logiczny blad w funkcjach undo/redo (cos ze stosem) sprawdzic ze komedna print nie laduje na stosie
     public void undo() {
         if (!UndoCommands.empty()) {
             Command command = UndoCommands.pop();

@@ -22,7 +22,6 @@ public class UpdateTrain implements Command {
 
     @Override
     public void undo() {
-        this.trainManager.delete(train.getTrainId());
         this.trainManager.update(previousTrainState.getTrainId(), previousTrainState);
     }
 }

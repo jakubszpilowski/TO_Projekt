@@ -20,7 +20,7 @@ public class UserDao implements Dao<User> {
 
     @Override
     public User get(int id) {
-        String sql = "SELECT * FROM users WHERE idUser = ?";
+        String sql = "SELECT * FROM trains_management_db.users WHERE idUser = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {

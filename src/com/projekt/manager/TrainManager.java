@@ -1,13 +1,17 @@
 package com.projekt.manager;
-import com.projekt.entity.CargoTrainFactory;
-import com.projekt.entity.PassengerTrainFactory;
+import com.projekt.DAO.Dao;
 import com.projekt.entity.Train;
-import com.projekt.entity.TrainFactory;
+
+import java.util.TreeMap;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 // Receiver class
 public class TrainManager extends Manager<Train>{
-
-    public TrainManager() {}
+    private final Dao<Train> trainDao;
+    public TrainManager(Dao<Train> trainDao) {
+        this.trainDao = trainDao;
+    }
 
     @Override
     public void add(int idTrain, Train train) {
@@ -21,7 +25,11 @@ public class TrainManager extends Manager<Train>{
 
     @Override
     public void update(int idTrain, Train train) {
-            this.getCollection().replace(idTrain, train);
+            if(this.getCollection().containsKey(idTrain)) {
+                this.getCollection().replace(idTrain, train);
+            } else {
+                add(idTrain, train);
+            }
         }
 
     @Override
@@ -29,5 +37,10 @@ public class TrainManager extends Manager<Train>{
             this.getCollection().remove(idTrain);
         }
 
+    public void synchronize() {
+        TreeMap<Integer, Train> map = this.trainDao.getAll().stream()
+                .collect(Collectors.toMap(Train::getTrainId, Function.identity(), (o1, o2) -> o1, TreeMap::new));
+        this.setCollection(map);
+    }
     //todo: more commands
 }
