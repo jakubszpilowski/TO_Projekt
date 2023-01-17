@@ -13,7 +13,7 @@ import java.util.TreeMap;
 public class TrainDao implements Dao<Train>{
     private final Connection connection;
 
-    public TrainDao() throws SQLException {
+    public TrainDao() {
         DatabaseConnector dbConnector = DatabaseConnector.getInstance();
         this.connection = dbConnector.connect();
     }

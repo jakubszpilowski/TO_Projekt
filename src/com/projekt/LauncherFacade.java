@@ -1,15 +1,17 @@
 package com.projekt;
 
+import com.projekt.DAO.TicketDao;
+import com.projekt.DAO.TrainDao;
 import com.projekt.manager.TicketManager;
 import com.projekt.manager.TrainManager;
 import java.util.Scanner;
 
 public class LauncherFacade {
     SystemInvoker system = new SystemInvoker();
-    TrainManager trainManager = new TrainManager();
+    TrainManager trainManager = new TrainManager(new TrainDao());
     menuTrain trainMenu = new menuTrain(system,trainManager);
-/*    TicketManager ticketManager = new TicketManager();
-    menuTicket ticketMenu = new menuTicket(system, ticketManager);*/
+    TicketManager ticketManager = new TicketManager(new TicketDao());
+    menuTicket ticketMenu = new menuTicket(system, ticketManager);
 
     public void run() {
         Scanner input = new Scanner(System.in);
@@ -25,7 +27,7 @@ public class LauncherFacade {
 
             switch (option) {
                 case "Tr" -> this.trainMenu.show();
-                //case "ti" -> this.ticketMenu.show();
+                case "Ti" -> this.ticketMenu.show();
                 case "Q" -> {running = false;}
                 default -> System.out.println("Invalid option!");
             }

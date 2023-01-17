@@ -3,6 +3,7 @@ package com.projekt;
 import com.projekt.commands.trains.CreateTrain;
 import com.projekt.commands.trains.DeleteTrain;
 import com.projekt.commands.trains.PrintTrains;
+import com.projekt.commands.trains.UpdateTrain;
 import com.projekt.entity.CargoTrainFactory;
 import com.projekt.entity.PassengerTrainFactory;
 import com.projekt.entity.Train;
@@ -15,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class menuTrain {
@@ -40,6 +42,7 @@ public class menuTrain {
             System.out.println("(P)rint current schedule");
             System.out.println("(U)ndo last change");
             System.out.println("(R)redo last undo");
+            System.out.println("(S)Synchronize");
             System.out.println("(Q)uit");
             option = input.nextLine().toUpperCase(Locale.ROOT);
 
@@ -50,6 +53,7 @@ public class menuTrain {
                 case "P" -> print();
                 case "U" -> undo();
                 case "R" -> redo();
+                case "S" -> synchronize();
                 case "Q" -> quit();
                 default -> System.out.println("Invalid option!");
             }
@@ -84,19 +88,58 @@ public class menuTrain {
             }
             default -> System.out.println("Invalid type, try again!");
         }
-
     }
 
-    private void showEditMenu() {
-        System.out.println("Choose field which you want to edit: ");
-        System.out.println("[D] Date");
-        System.out.println("[DT] Departure time");
-        System.out.println("[AT] Arrival time");
-        System.out.println("[P] Platform");
-        System.out.println("Finish editing");
-    }
+    private void edit() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Insert train ID: ");
+        int id = in.nextInt();
 
-    private void edit() {};
+        if(this.trainManager.getCollection().containsKey(id)){
+            TrainFactory trainFactory;
+            String type = this.trainManager.getCollection().get(id).getTrainType();
+            if (Objects.equals(type, "pasażerski")) {
+                trainFactory = new PassengerTrainFactory();
+            } else if (Objects.equals(type, "towarowy")) {
+                trainFactory = new CargoTrainFactory();
+            }
+            else {
+                System.out.println("Error!");
+                return;
+            }
+
+            Train ogTrain = this.trainManager.getCollection().get(id);
+            Train clonedTrain = trainFactory.createTrain(ogTrain.getTrainId(), ogTrain.getTrainNumber(), ogTrain.getFrom(), ogTrain.getTo(),
+                    ogTrain.getDepartureTime(), ogTrain.getArrivalTime(), ogTrain.getPlatform(), ogTrain.getDate());
+
+            System.out.println("Choose field which you want to edit: ");
+            System.out.println("[D] Date");
+            System.out.println("[F] From");
+            System.out.println("[T] To");
+            System.out.println("[DT] Departure time");
+            System.out.println("[AT] Arrival time");
+            System.out.println("[P] Platform");
+
+            Scanner input = new Scanner(System.in);
+            String option = input.nextLine();
+
+            switch (option) {
+                case "D" -> clonedTrain.setDate(getDate());
+                case "F" -> clonedTrain.setFrom(getFrom());
+                case "T" -> clonedTrain.setTo(getTo());
+                case "DT" -> clonedTrain.setDepartureTime(getDepartureTime());
+                case "AT" -> clonedTrain.setArrivalTime(getArrivalTime());
+                case "PT" -> clonedTrain.setPlatform(getPlatform());
+                default -> {
+                    System.out.println("Invalid option, try again!");
+                    return;
+                }
+            }
+            this.system.executeCommand(new UpdateTrain(this.trainManager, clonedTrain));
+        } else {
+            System.out.println("Train does not exist!");
+        }
+    }
     private void delete(){
         System.out.println("Insert ID: ");
         int id = input.nextInt();
@@ -119,6 +162,11 @@ public class menuTrain {
     private void redo(){
         this.system.redo();
         System.out.println("Redo last command!");
+    }
+
+    private void synchronize() {
+        this.trainManager.synchronize();
+        System.out.println("Synchronized with database!");
     }
 
     private void quit() {
@@ -179,5 +227,4 @@ public class menuTrain {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
-
 }
