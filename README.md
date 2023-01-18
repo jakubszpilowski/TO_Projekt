@@ -10,18 +10,18 @@ Projekt zakłada zbudowanie aplikacji do zarządzania ruchem pociągów. Modyfik
 
 > Wzorce kreacyjne: 
 
-- Singleton – utrzymywanie połączenie z bazą danych, instancja bazy danych. 
+- Singleton – utrzymywanie połączenie z bazą danych, instancja bazy danych.
 
-- Metoda wytwórcza - tworzenie obiektów mających ze sobą cechy, w szczególności pociągi z rozróżnieniem na ich rodzaje. 
+- Fabryka abstrakcyjna - tworzenie obiektów mających ze sobą cechy, w szczególności pociągi z rozróżnieniem na ich rodzaje. 
 
 > Wzorce behawioralne: 
 
-- Command – interfejs aplikacji do zarządzania całą strukturą poleceń 
+- Command – interfejs aplikacji do zarządzania całą strukturą poleceń z mechanizmem UNDO/REDO. 
 
-- Memento – tworzenie rozkładu będzie możliwe z operacjami undo/redo. Zatwierdzenie powoduje zapis, koniec możliwości operowania na historii.  
+- Strategia - exportowanie pliku do różnych formatów (np. Bilet – PDF, DOCS, …, PDF, JPEG) 
 
 > Wzorce strukturalne: 
 
-- Fasada – exportowanie pliku dla użytkownika do różnych formatów (np. Bilet – PDF, DOCS, …, PDF, JPEG) 
+- Fasada – ukrycie abstrakcji działania aplikacji przed klientem i (interfejs menu).
 
-- Most – stosowany do podziału kodu na abstrakcję oraz implementację na przykład w przypadku abstrakcji jaką jest pociąg a implementacją jaką jest rodzaj pociągu 
+- DAO - wzorzec Data Access Object (DAO) jest wzorcem strukturalnym, który pozwala nam odizolować warstwę aplikacji/biznesu. Zastosowany w celu komunikacji z bazą danych i wyciąganie z niej informacji. 
